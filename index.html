@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MG Modas - Loja de Moda Casual Feminina com peças exclusivas direto do Brás.">
+    <title>MG Modas | Moda Casual Feminina do Brás</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Phosphor Icons (for modern minimalist icons) -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">MG <span>Modas</span></a>
+            
+            <ul class="nav-links">
+                <li><a href="#home">Início</a></li>
+                <li><a href="#colecao">Coleção</a></li>
+                <li><a href="#sobre">Nossa Origem</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <a href="https://wa.me/5511999999999" class="btn-whatsapp-nav" target="_blank">
+                    <i class="ph ph-whatsapp-logo"></i>
+                    Comprar
+                </a>
+                <button class="mobile-menu-btn" aria-label="Abrir Menu">
+                    <i class="ph ph-list"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay">
+        <button class="close-menu-btn" aria-label="Fechar Menu">
+            <i class="ph ph-x"></i>
+        </button>
+        <ul class="mobile-links">
+            <li><a href="#home">Início</a></li>
+            <li><a href="#colecao">Coleção</a></li>
+            <li><a href="#sobre">Nossa Origem</a></li>
+            <li><a href="#contato">Contato</a></li>
+            <li>
+                <a href="https://wa.me/5511999999999" class="btn-primary" target="_blank">
+                    Chamar no WhatsApp
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <span class="hero-badge" id="hero-badge">Nova Coleção Primavera/Verão</span>
+            <h1 id="hero-title">Moda Casual Feminina <br><span>Direto do Brás</span></h1>
+            <p id="hero-description">Descubra peças versáteis, elegantes e com aquele preço justo que só a maior capital da moda no Brasil pode oferecer. Exclusividade e conforto para o seu dia a dia.</p>
+            <div class="hero-buttons">
+                <a href="#colecao" class="btn-primary">Ver Catálogo</a>
+                <a href="https://wa.me/5511999999999" class="btn-secondary" target="_blank">Falar com Consultora</a>
+            </div>
+        </div>
+        <div class="hero-image-wrapper">
+            <div class="blob-shape"></div>
+            <img src="assets/images/hero.png" alt="Mulher usando moda casual MG Modas" class="hero-img" id="hero-image">
+        </div>
+    </section>
+
+    <!-- Features / Benefits -->
+    <section class="benefits">
+        <div class="benefit-item">
+            <div class="icon-box"><i class="ph ph-sketch-logo"></i></div>
+            <h3>Design Moderno</h3>
+            <p>Peças alinhadas com as tendências globais.</p>
+        </div>
+        <div class="benefit-item">
+            <div class="icon-box"><i class="ph ph-tag"></i></div>
+            <h3>Preço de Fábrica</h3>
+            <p>Direto do Brás para o seu guarda-roupa.</p>
+        </div>
+        <div class="benefit-item">
+            <div class="icon-box"><i class="ph ph-truck"></i></div>
+            <h3>Envio para todo Brasil</h3>
+            <p>Entregas rápidas e seguras.</p>
+        </div>
+    </section>
+
+    <!-- Collection Section -->
+    <section id="colecao" class="collection">
+        <div class="section-header">
+            <h2>Destaques da Semana</h2>
+            <p>As peças mais desejadas pelas nossas clientes</p>
+        </div>
+
+        <div class="product-grid" id="product-grid">
+            <!-- Product 1 -->
+            <div class="product-card">
+                <div class="product-img-box">
+                    <img src="assets/images/conjunto.png" alt="Conjunto Alfaiataria Casual" loading="lazy">
+                    <div class="product-overlay">
+                        <a href="https://wa.me/5511999999999?text=Olá, tenho interesse no Conjunto Casual Rosa" class="btn-buy" target="_blank">
+                            <i class="ph ph-whatsapp-logo"></i> Comprar
+                        </a>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <span class="category">Conjuntos</span>
+                    <h3>Conjunto Casual Rosa</h3>
+                    <p class="price">R$ 119,90</p>
+                </div>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="product-card">
+                <div class="product-img-box">
+                    <span class="tag-new">Novo</span>
+                    <img src="assets/images/vestido.png" alt="Vestido Midi Bege" loading="lazy">
+                    <div class="product-overlay">
+                        <a href="https://wa.me/5511999999999?text=Olá, tenho interesse no Vestido Midi Bege" class="btn-buy" target="_blank">
+                            <i class="ph ph-whatsapp-logo"></i> Comprar
+                        </a>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <span class="category">Vestidos</span>
+                    <h3>Vestido Midi Fluido Bege</h3>
+                    <p class="price">R$ 139,90</p>
+                </div>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="product-card">
+                <div class="product-img-box">
+                    <img src="assets/images/blusa.png" alt="Blusa Branca Premium" loading="lazy">
+                    <div class="product-overlay">
+                        <a href="https://wa.me/5511999999999?text=Olá, tenho interesse na Blusa Branca Premium" class="btn-buy" target="_blank">
+                            <i class="ph ph-whatsapp-logo"></i> Comprar
+                        </a>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <span class="category">Blusas</span>
+                    <h3>Blusa Branca Premium + Jeans</h3>
+                    <p class="price">R$ 89,90</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="collection-action">
+            <a href="https://wa.me/5511999999999" class="btn-outline" target="_blank">Ver catálogo completo no WhatsApp</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="sobre" class="about">
+        <div class="about-grid">
+            <div class="about-text">
+                <h2>A Essência do Brás</h2>
+                <p>Nascemos no coração da moda brasileira: o Brás, em São Paulo. Nossa missão é desmistificar que moda acessível não tem qualidade. Na MG Modas, selecionamos e produzimos peças com caimento impecável e tecidos duráveis.</p>
+                <p>Valorizamos a mulher moderna que busca praticidade no dia a dia sem abrir mão da elegância. Cada costura conta a história de quem vive a moda intensamente.</p>
+                
+                <div class="stats">
+                    <div class="stat-item">
+                        <h4>+5.000</h4>
+                        <p>Clientes Felizes</p>
+                    </div>
+                    <div class="stat-item">
+                        <h4>100%</h4>
+                        <p>Fabricação Nacional</p>
+                    </div>
+                </div>
+            </div>
+            <div class="about-image">
+                <!-- Using one of the product images or hero just to give atmosphere -->
+                <img src="assets/images/conjunto.png" alt="Essência MG Modas">
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action Banner -->
+    <section class="cta-banner">
+        <div class="cta-content">
+            <h2>Pronta para renovar seu closet?</h2>
+            <p>Fale com uma de nossas consultoras agora e receba um atendimento personalizado.</p>
+            <a href="https://wa.me/5511999999999" class="btn-primary btn-large" target="_blank">
+                <i class="ph ph-whatsapp-logo"></i> Iniciar Atendimento
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contato">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <a href="#" class="logo">MG <span>Modas</span></a>
+                <p>A sua melhor escolha em moda casual feminina, direto da fonte.</p>
+                <div class="social-links">
+                    <a href="#"><i class="ph ph-instagram-logo"></i></a>
+                    <a href="#"><i class="ph ph-facebook-logo"></i></a>
+                    <a href="#"><i class="ph ph-tiktok-logo"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-links">
+                <h3>Links Úteis</h3>
+                <ul>
+                    <li><a href="#home">Início</a></li>
+                    <li><a href="#colecao">Coleção</a></li>
+                    <li><a href="#sobre">Sobre Nós</a></li>
+                    <li><a href="#">Política de Trocas</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-contact">
+                <h3>Contato</h3>
+                <ul>
+                    <li><i class="ph ph-map-pin"></i> Brás, São Paulo - SP</li>
+                    <li><i class="ph ph-whatsapp-logo"></i> (11) 99999-9999</li>
+                    <li><i class="ph ph-envelope-simple"></i> contato@mgmodas.com.br</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 MG Modas. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script type="module" src="scripts/app.js"></script>
+</body>
+</html>
