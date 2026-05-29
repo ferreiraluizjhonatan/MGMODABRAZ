@@ -1,7 +1,7 @@
 // Sanity.io configuration and helpers
 // Replace with your project ID once you create a project on sanity.io
 export const SANITY_CONFIG = {
-  projectId: 'YOUR_SANITY_PROJECT_ID',
+  projectId: 'up3mwksb',
   dataset: 'production',
   apiVersion: '2023-08-01',
   useCdn: true,
