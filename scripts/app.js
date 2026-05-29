@@ -64,7 +64,10 @@ document.addEventListener('DOMContentLoaded', () => {
     updateStaticWhatsAppLinks();
 
     // 5. Load dynamic content from Sanity if configured
-    initDynamicContent();
+    initDynamicContent().then(() => {
+        // 6. Initialize Carousel (for static fallback or dynamic content)
+        initCarousel();
+    });
 });
 
 /**
@@ -189,4 +192,138 @@ async function initDynamicContent() {
     } catch (e) {
         console.error('Failed to load products from Sanity:', e);
     }
+}
+
+/**
+ * Implements a 360-degree infinite carousel with transitionend wrap-around
+ * and swipe support for mobile touch screens.
+ */
+function initCarousel() {
+    const track = document.getElementById('product-grid');
+    const container = document.querySelector('.carousel-container');
+    if (!track || !container) return;
+
+    const prevBtn = container.querySelector('.prev-btn');
+    const nextBtn = container.querySelector('.next-btn');
+
+    // Get non-clone cards
+    let cards = Array.from(track.children).filter(c => !c.classList.contains('clone-card'));
+    if (cards.length === 0) return;
+
+    // Clear any previous clones (important for dynamic re-init)
+    track.querySelectorAll('.clone-card').forEach(clone => clone.remove());
+
+    const originalCount = cards.length;
+    // We clone up to 3 cards on both sides to hide transitions and handle screen wraps
+    const cloneCount = Math.min(3, originalCount);
+
+    // Prepend clones (of the last elements)
+    for (let i = originalCount - cloneCount; i < originalCount; i++) {
+        const clone = cards[i].cloneNode(true);
+        clone.classList.add('clone-card');
+        track.insertBefore(clone, track.firstChild);
+    }
+
+    // Append clones (of the first elements)
+    for (let i = 0; i < cloneCount; i++) {
+        const clone = cards[i].cloneNode(true);
+        clone.classList.add('clone-card');
+        track.appendChild(clone);
+    }
+
+    const allCards = Array.from(track.children);
+    let currentIndex = cloneCount;
+    let isMoving = false;
+
+    // Reset initial translation
+    track.style.transition = 'none';
+    updateCarouselPosition();
+
+    // Rebind event listeners by replacing button nodes
+    const newPrevBtn = prevBtn.cloneNode(true);
+    const newNextBtn = nextBtn.cloneNode(true);
+    prevBtn.parentNode.replaceChild(newPrevBtn, prevBtn);
+    nextBtn.parentNode.replaceChild(newNextBtn, nextBtn);
+
+    newNextBtn.addEventListener('click', () => {
+        if (isMoving) return;
+        currentIndex++;
+        updateCarouselPosition(true);
+    });
+
+    newPrevBtn.addEventListener('click', () => {
+        if (isMoving) return;
+        currentIndex--;
+        updateCarouselPosition(true);
+    });
+
+    track.addEventListener('transitionend', () => {
+        isMoving = false;
+        // Wrap around seamlessly
+        if (currentIndex >= originalCount + cloneCount) {
+            currentIndex = cloneCount;
+            updateCarouselPosition(false);
+        } else if (currentIndex < cloneCount) {
+            currentIndex = originalCount + cloneCount - 1;
+            updateCarouselPosition(false);
+        }
+    });
+
+    function updateCarouselPosition(animate = true) {
+        if (animate) {
+            isMoving = true;
+            track.style.transition = 'transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)';
+        } else {
+            track.style.transition = 'none';
+        }
+
+        const cardWidth = allCards[0].getBoundingClientRect().width;
+        const gap = parseFloat(window.getComputedStyle(track).gap) || 0;
+        const offset = currentIndex * (cardWidth + gap);
+
+        track.style.transform = `translateX(-${offset}px)`;
+    }
+
+    // Swipe gestures
+    let startX = 0;
+    let moveX = 0;
+    let initialOffset = 0;
+
+    track.addEventListener('touchstart', (e) => {
+        if (isMoving) return;
+        startX = e.touches[0].clientX;
+        track.style.transition = 'none';
+        
+        const cardWidth = allCards[0].getBoundingClientRect().width;
+        const gap = parseFloat(window.getComputedStyle(track).gap) || 0;
+        initialOffset = -currentIndex * (cardWidth + gap);
+        moveX = 0;
+    }, { passive: true });
+
+    track.addEventListener('touchmove', (e) => {
+        if (isMoving) return;
+        moveX = e.touches[0].clientX - startX;
+        track.style.transform = `translateX(${initialOffset + moveX}px)`;
+    }, { passive: true });
+
+    track.addEventListener('touchend', () => {
+        if (isMoving) return;
+        const cardWidth = allCards[0].getBoundingClientRect().width;
+        const threshold = cardWidth / 4; // Swipe distance threshold (25%)
+
+        if (Math.abs(moveX) > threshold) {
+            if (moveX > 0) {
+                currentIndex--;
+            } else {
+                currentIndex++;
+            }
+        }
+        updateCarouselPosition(true);
+        moveX = 0;
+    });
+
+    // Resize responsiveness
+    window.addEventListener('resize', () => {
+        updateCarouselPosition(false);
+    });
 }
